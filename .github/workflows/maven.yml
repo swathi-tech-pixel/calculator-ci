@@ -18,9 +18,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-      strategy:
-    matrix:
-      java-version: [17, 21]
+    strategy:
+      matrix:
+        java-version: [17, 21]
 
     steps:
       - uses: actions/checkout@v4
@@ -28,10 +28,9 @@ jobs:
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-           java-version: ${{ matrix.java-version }}
-        distribution: temurin
-        cache: maven
-
+          java-version: ${{ matrix.java-version }}
+          distribution: temurin
+          cache: maven
 
       - name: Build Project
         run: mvn -B compile
@@ -40,14 +39,18 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        java-version: [17, 21]
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: ${{ matrix.java-version }}
+          distribution: temurin
           cache: maven
 
       - name: Run Tests
@@ -57,14 +60,18 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        java-version: [17, 21]
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: ${{ matrix.java-version }}
+          distribution: temurin
           cache: maven
 
       - name: Package Application
