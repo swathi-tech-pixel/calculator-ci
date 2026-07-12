@@ -85,7 +85,6 @@ jobs:
       
       - name: Display Secret
         run: echo "Hello ${{ secrets.MY_NAME }}"
-        deploy:
   deploy:
   needs: package
   runs-on: ubuntu-latest
