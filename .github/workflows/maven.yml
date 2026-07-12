@@ -85,3 +85,12 @@ jobs:
       
       - name: Display Secret
         run: echo "Hello ${{ secrets.MY_NAME }}"
+        deploy:
+  runs-on: ubuntu-latest
+
+  environment:
+    name: development
+
+  steps:
+    - name: Deploy
+      run: echo "Deploying to Development"
